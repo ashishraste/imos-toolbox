@@ -301,9 +301,16 @@ else
     uiwait(hMsgbox);
     
     %select the area to use for comparison
-    rec = drawrectangle(hAxPress);
-    x = [rec.Position(1) rec.Position(1)+rec.Position(3)];
-    delete(rec);
+    has_image_toolbox = exist('drawrectangle.m','file') == 2;
+    if has_image_toolbox
+        rec = drawrectangle(hAxPress);
+        x = [rec.Position(1) rec.Position(1)+rec.Position(3)];
+        delete(rec);
+    else
+       %fall back to the old method
+       [x, ~] = select_points(hAxPress);
+    end
+
     iGood = timeVar >= x(1) & timeVar <= x(2);
 end
 
