@@ -16,8 +16,10 @@ function rnames = random_names(n, len)
 % Example:
 %
 % rnames = random_names(1);
-% assert(length(rnames)==1);
-% assert(length(rnames{1}==10));
+% assert(iscell(rnames))
+% assert(~isempty(rnames))
+% assert(~isempty(rnames{1}))
+% assert(isstr(rnames{1}))
 %
 % author: hugo.oliveira@utas.edu.au
 %
